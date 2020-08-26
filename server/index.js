@@ -1,26 +1,24 @@
-require('dotenv').config();
-const express = require('express');
-const session = require('express-session');
+require("dotenv").config();
+const express = require("express");
+const session = require("express-session");
 const app = express();
-const massive = require('massive');
-const authCtrl = require('./controllers/authController');
-const middle = require('./middleware/authMiddleware');
-
-const PORT = 4008;
+const massive = require("massive");
+const authCtrl = require("./controllers/authController");
+const monthController = require("./controllers/monthController");
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
-
-const app = express()
 
 app.use(express.json());
 
 massive({
   connectionString: CONNECTION_STRING,
-  ssl: { rejectUnauthorized: false }
-}).then(db => {
-  app.set('db', db);
-  console.log('db connected');
-}).catch( err => console.log(err));
+  ssl: { rejectUnauthorized: false },
+})
+  .then((db) => {
+    app.set("db", db);
+    console.log("db connected");
+  })
+  .catch((err) => console.log(err));
 
 app.use(
   session({
@@ -33,4 +31,13 @@ app.use(
   })
 );
 
-app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
+//# AUTH ENDPOINTS
+app.get("/auth/user", authCtrl.getUser);
+app.post("/auth/register", authCtrl.register);
+app.post("/auth/login", authCtrl.login);
+app.delete("/auth/logout", authCtrl.logout);
+
+//# MONTH ENDPOINTS
+app.get("/api/months/:id", monthController.getMonths);
+
+app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

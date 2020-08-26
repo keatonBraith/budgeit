@@ -11,6 +11,7 @@ CREATE TABLE transactions(
     category VARCHAR(100) REFERENCES categories(name),
     amount INT,
     type VARCHAR(200),
+    month_id INT REFERENCES months(month_id),
     user_id INT REFERENCES users(user_id)
 );
 

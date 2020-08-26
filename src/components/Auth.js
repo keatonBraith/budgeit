@@ -47,7 +47,6 @@ const Auth = (props) => {
       });
   };
 
-  console.log("from auth", props.user)
   return (
     <div>
       <h1>{toggle ? "Login" : "Register"}</h1>

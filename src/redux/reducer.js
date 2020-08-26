@@ -23,11 +23,7 @@ export function logoutUser() {
 }
 
 export function getUser() {
-  const user = axios
-    .get("/auth/user")
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
-    console.log('from reducer', user)
+  const user = axios.get("/auth/user");
   return {
     type: GET_USER,
     payload: user,

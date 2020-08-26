@@ -39,5 +39,7 @@ app.delete("/auth/logout", authCtrl.logout);
 
 //# MONTH ENDPOINTS
 app.get("/api/months/:id", monthController.getMonths);
+app.post("/api/month/:id", monthController.addMonth);
+app.delete("/api/month/:id/:userId", monthController.deleteMonth);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

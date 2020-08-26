@@ -18,6 +18,7 @@ CREATE TABLE transactions(
 CREATE TABLE categories(
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100),
+    budget INT,
     user_id INT REFERENCES users(user_id)
 );
 

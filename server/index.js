@@ -5,6 +5,7 @@ const app = express();
 const massive = require("massive");
 const authCtrl = require("./controllers/authController");
 const monthController = require("./controllers/monthController");
+const categoryController = require("./controllers/categoryController");
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
 
@@ -41,5 +42,9 @@ app.delete("/auth/logout", authCtrl.logout);
 app.get("/api/months/:id", monthController.getMonths);
 app.post("/api/month/:id", monthController.addMonth);
 app.delete("/api/month/:id/:userId", monthController.deleteMonth);
+
+//#CATEGORY ENDPOINTS
+app.get("/api/categories/:id", categoryController.getCategories);
+
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

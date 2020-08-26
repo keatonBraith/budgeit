@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Dashboard = (props) => {
   const [months, setMonths] = useState([]);
@@ -45,7 +46,7 @@ const Dashboard = (props) => {
       .catch((err) => console.log(err));
   };
 
-  console.log(props.user.user_id, props.match.params.userId);
+  // console.log(props.user.user_id, props.match.params.userId);
 
   return (
     <section>
@@ -63,7 +64,7 @@ const Dashboard = (props) => {
         {months.map((month, index) => {
           return (
             <div key={index}>
-              <h3>{month.name}</h3>
+              <h3><Link to={`/budget/${month.month_id}`}>{month.name}</Link></h3>
               <button onClick={() => deleteMonth(month.month_id)}>X</button>
             </div>
           );

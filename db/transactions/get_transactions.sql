@@ -1,3 +1,3 @@
 SELECT * FROM transactions t
-JOIN users u ON u.user_id = t.user_id
-WHERE user_id = $1;
+JOIN months m ON m.month_id = t.month_id
+WHERE month_id = $1;

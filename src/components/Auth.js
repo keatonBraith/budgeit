@@ -54,12 +54,14 @@ const Auth = (props) => {
         <input
           name="email"
           placeholder="email"
+          type="email"
           value={emailInput}
           onChange={handleEmailInput}
         />
         <input
           name="password"
           placeholder="password"
+          type="password"
           value={passwordInput}
           onChange={handlePasswordInput}
         />

@@ -10,6 +10,6 @@ export default (
     <Route exact path="/" component={Auth} />
     <Route path="/dash/:userId" component={Dashboard} />
     <Route path="/budget/:monthId" component={Budget} />
-    <Route path="/trans" component={Transactions} />
+    <Route path="/trans/:monthId" component={Transactions} />
   </Switch>
 );

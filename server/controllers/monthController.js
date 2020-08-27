@@ -27,7 +27,7 @@ module.exports = {
     db.months
       .delete_month(id, userId)
       .then((months) => {
-        console.log(userId, months)
+        // console.log(userId, months)
         res.status(200).send(months)})
       .catch((err) => {
         res.status(500).send({

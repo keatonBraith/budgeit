@@ -19,7 +19,7 @@ CREATE TABLE categories(
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     budget INT,
-    user_id INT REFERENCES users(user_id)
+    user_id INT
 );
 
 CREATE TABLE months(

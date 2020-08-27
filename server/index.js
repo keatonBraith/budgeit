@@ -45,6 +45,8 @@ app.delete("/api/month/:id/:userId", monthController.deleteMonth);
 
 //#CATEGORY ENDPOINTS
 app.get("/api/categories/:id", categoryController.getCategories);
+app.post("/api/category/:id", categoryController.addCategory);
+app.delete("/api/category/:id/:userId", categoryController.deleteCategory);
 
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

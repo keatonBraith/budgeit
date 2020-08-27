@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { getMonths } from "../redux/monthReducer";
 import { Link } from "react-router-dom";
 
 const Dashboard = (props) => {
@@ -13,17 +14,18 @@ const Dashboard = (props) => {
   };
 
   useEffect(() => {
-    props.user.user_id === +props.match.params.userId
+    props.userReducer.user.user_id === +props.match.params.userId
       ? axios
           .get(`/api/months/${props.match.params.userId}`)
           .then((res) => {
             setMonths(res.data);
+            props.getMonths(res.data);
           })
           .catch((err) => {
             console.log(err);
           })
       : setMonths([]);
-  }, [props.user.user_id, props.match.params.userId]);
+  }, []);
 
   const addMonth = () => {
     axios
@@ -39,7 +41,7 @@ const Dashboard = (props) => {
   const deleteMonth = (id) => {
     console.log("this is delete", id)
     axios
-      .delete(`/api/month/${id}/${props.user.user_id}`)
+      .delete(`/api/month/${id}/${props.userReducer.user.user_id}`)
       .then((res) => {
         setMonths(res.data);
       })
@@ -76,4 +78,4 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getMonths })(Dashboard);

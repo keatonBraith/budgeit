@@ -40,4 +40,16 @@ module.exports = {
         console.log(err);
       });
   },
+
+  editCategory: async (req, res) => {
+    const { name, budget } = req.body;
+    const { id } = req.params;
+    const db = req.app.get("db");
+    const categories = await db.categories.edit_category({
+      name,
+      budget,
+      category_id: id,
+    });
+    res.status(200).send(categories);
+  },
 };

@@ -3,11 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getUser, logoutUser } from "../redux/reducer";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const Nav = (props) => {
   useEffect(() => {
     props.getUser();
-  });
+  }, []);
 
   const logout = () => {
     axios
@@ -23,11 +24,11 @@ const Nav = (props) => {
     <div>
       <nav>
         <div>Logo</div>
-        <h3>{`email: ${props.user.email}
-              id: ${props.user.user_id}`}</h3>
+        <h3>{`email: ${props.userReducer.user.email}
+              id: ${props.userReducer.user.user_id}`}</h3>
         <ul>
           <li>
-            <Link to={`/dash/${props.user.user_id}`}>Home</Link>
+            <Link to={`/dash/${props.userReducer.user.user_id}`}>Home</Link>
           </li>
           <button onClick={logout}>
             <Link to="/">Logout</Link>
@@ -40,4 +41,4 @@ const Nav = (props) => {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, { logoutUser, getUser })(Nav);
+export default connect(mapStateToProps, { logoutUser, getUser })(withRouter(Nav));

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Categories from "./Categories";
 
 const Budget = (props) => {
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,17 @@ const Budget = (props) => {
     const { value } = event.target;
     setCategory(value);
   };
+
+  useEffect(() => {
+    axios
+      .get(`/api/categories/${props.userReducer.user.user_id}`)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.userReducer.user.user_id]);
 
   const handleBudgetInput = (event) => {
     const { value } = event.target;
@@ -28,20 +40,9 @@ const Budget = (props) => {
     handleClearInput();
   };
 
-  useEffect(() => {
-    axios
-      .get(`/api/categories/${props.user.user_id}`)
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [props.user.user_id]);
-
   const addCategory = () => {
     axios
-      .post(`/api/category/${props.user.user_id}`, {
+      .post(`/api/category/${props.userReducer.user.user_id}`, {
         name: categoryInput,
         budget: budgetInput,
       })
@@ -53,9 +54,20 @@ const Budget = (props) => {
       });
   };
 
+  const editCategory = (id, name, budget) => {
+    axios
+      .put(`/api/category/${id}`, { name, budget })
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const deleteCategory = (id) => {
     axios
-      .delete(`/api/category/${id}/${props.user.user_id}`)
+      .delete(`/api/category/${id}/${props.userReducer.user.user_id}`)
       .then((res) => setCategories(res.data))
       .catch((err) => console.log(err));
   };
@@ -65,7 +77,11 @@ const Budget = (props) => {
       <h1>Get Budgeting!</h1>
       <div>
         <div>
-          <button><Link to={`/trans/${props.months.month_id}`}>Add Transaction</Link></button>
+          <button>
+            <Link to={`/trans/${props.monthsReducer.months.month_id}`}>
+              Add Transaction
+            </Link>
+          </button>
           <button onClick={onClick}>Add Category</button>
           <input
             name="category"
@@ -90,20 +106,20 @@ const Budget = (props) => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            {categories.map((category, index) => (
-              <tr key={index}>
-                <td>{category.name}</td>
-                <td>{category.budget}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>
-                  <button>Edit</button>
-                  <button onClick={() => deleteCategory(category.category_id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <div>
+            <tbody>
+              {categories.map((category, index) => {
+                return (
+                  <Categories
+                    editCategory={editCategory}
+                    deleteCategory={deleteCategory}
+                    category={category}
+                    index={index}
+                  />
+                );
+              })}
+            </tbody>
+          </div>
         </table>
       </div>
     </section>

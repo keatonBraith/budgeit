@@ -5,4 +5,5 @@ VALUES
 
 SELECT u.user_id, category_id, name, budget FROM users u 
 JOIN categories c ON u.user_id = c.user_id
-WHERE u.user_id = $3;
+WHERE u.user_id = $3
+ORDER BY name ASC;

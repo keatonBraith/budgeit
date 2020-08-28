@@ -6,6 +6,7 @@ const massive = require("massive");
 const authCtrl = require("./controllers/authController");
 const monthController = require("./controllers/monthController");
 const categoryController = require("./controllers/categoryController");
+const transactionController = require("./controllers/transactionController");
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
 
@@ -48,5 +49,11 @@ app.get("/api/categories/:id", categoryController.getCategories);
 app.post("/api/category/:id", categoryController.addCategory);
 app.put("/api/category/:id", categoryController.editCategory);
 app.delete("/api/category/:id/:userId", categoryController.deleteCategory);
+
+//#TRANSACTION ENDPOINTS
+app.get('/api/trans/:id', transactionController.getTransactions);
+app.post('/api/trans/:id', transactionController.addTransaction);
+app.put('/api/trans/:id', transactionController.editTransaction);
+app.delete('/api/trans/:id/:monthId', transactionController.deleteTransaction);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

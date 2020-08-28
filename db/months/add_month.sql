@@ -3,5 +3,6 @@ INSERT INTO months
 VALUES
 ($1, $2);
 
-SELECT * FROM months
-WHERE user_id = $2;
+SELECT month_id, name, m.user_id FROM months
+WHERE user_id = $2
+ORDER BY month_id ASC;

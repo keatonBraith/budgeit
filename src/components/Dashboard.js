@@ -14,8 +14,7 @@ const Dashboard = (props) => {
   };
 
   useEffect(() => {
-    props.userReducer.user.user_id === +props.match.params.userId
-      ? axios
+    axios
           .get(`/api/months/${props.match.params.userId}`)
           .then((res) => {
             setMonths(res.data);
@@ -24,7 +23,6 @@ const Dashboard = (props) => {
           .catch((err) => {
             console.log(err);
           })
-      : setMonths([]);
   }, []);
 
   const addMonth = () => {

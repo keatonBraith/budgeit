@@ -7,4 +7,4 @@ amount = ${amount},
 type = ${type}
 WHERE transaction_id = ${transaction_id};
 SELECT * FROM transactions
-ORDER BY transaction_id;
+ORDER BY date ASC;

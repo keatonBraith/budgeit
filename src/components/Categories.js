@@ -21,22 +21,23 @@ const Categories = (props) => {
   };
 
   return (
-    <table>
-      <tbody>
-        <tr key={props.index}>
+    <div className="table">
+        <div className="table-row" key={props.index}>
           {isEditing ? (
             <>
-              <td>
+              <div className="table-col">
                 <input name="name" value={input.name} onChange={handleChange} />
-              </td>
-              <td>
+              </div>
+              <div className="table-col">
                 <input
                   name="budget"
                   type="number"
                   value={input.budget}
                   onChange={handleChange}
                 />
-              </td>
+              </div>
+              <div className="table-col">$0</div>
+              <div className="table-col">$0</div>
               <button
                 onClick={() => {
                   props.editCategory(
@@ -53,11 +54,11 @@ const Categories = (props) => {
             </>
           ) : (
             <>
-              <td>{props.category.name}</td>
-              <td>${props.category.budget}</td>
-              <td>$0</td>
-              <td>$0</td>
-              <td>
+              <div className="table-col">{props.category.name}</div>
+              <div className="table-col">${props.category.budget}</div>
+              <div className="table-col">$0</div>
+              <div className="table-col">$0</div>
+              <div>
                 <button onClick={toggleEdit}>Edit</button>
                 <button
                   onClick={() =>
@@ -66,12 +67,11 @@ const Categories = (props) => {
                 >
                   Delete
                 </button>
-              </td>
+              </div>
             </>
           )}
-        </tr>
-      </tbody>
-    </table>
+        </div >
+    </div>
   );
 };
 

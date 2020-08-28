@@ -24,8 +24,6 @@ const Nav = (props) => {
     <div>
       <nav>
         <div>Logo</div>
-        <h3>{`email: ${props.userReducer.user.email}
-              id: ${props.userReducer.user.user_id}`}</h3>
         <ul>
           <li>
             <Link to={`/dash/${props.userReducer.user.user_id}`}>Home</Link>

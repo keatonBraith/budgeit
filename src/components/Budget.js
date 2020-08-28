@@ -78,7 +78,7 @@ const Budget = (props) => {
       <div>
         <div>
           <button>
-            <Link to={`/trans/${props.monthsReducer.months.month_id}`}>
+            <Link to={`/trans/${props.match.params.monthId}`}>
               Add Transaction
             </Link>
           </button>
@@ -96,31 +96,29 @@ const Budget = (props) => {
             onChange={handleBudgetInput}
           />
         </div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Budgeted</th>
-              <th>Actual</th>
-              <th>Difference</th>
-              <th></th>
-            </tr>
-          </thead>
-          <div>
-            <tbody>
-              {categories.map((category, index) => {
-                return (
-                  <Categories
-                    editCategory={editCategory}
-                    deleteCategory={deleteCategory}
-                    category={category}
-                    index={index}
-                  />
-                );
-              })}
-            </tbody>
+        <div className="table">
+          <div className="table-row">
+            <div className="table-col">Category</div>
+            <div className="table-col">Budgeted</div>
+            <div className="table-col">Actual</div>
+            <div className="table-col">Difference</div>
           </div>
-        </table>
+        </div>
+        <div>
+          <div>
+            {categories.map((category, index) => {
+              return (
+                <Categories
+                  editCategory={editCategory}
+                  deleteCategory={deleteCategory}
+                  category={category}
+                  index={index}
+                  key={index}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

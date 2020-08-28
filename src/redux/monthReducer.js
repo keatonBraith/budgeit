@@ -18,6 +18,6 @@ export default function monthReducer(state = initialState, action) {
     case GET_MONTHS:
       return { ...state, months: action.payload };
     default:
-      return initialState;
+      return state;
   }
 }

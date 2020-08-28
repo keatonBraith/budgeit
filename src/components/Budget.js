@@ -23,7 +23,7 @@ const Budget = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.userReducer.user.user_id]);
+  }, []);
 
   const handleBudgetInput = (event) => {
     const { value } = event.target;
@@ -73,7 +73,7 @@ const Budget = (props) => {
   };
 
   return (
-    <section>
+    <section>a
       <h1>Get Budgeting!</h1>
       <div>
         <div>

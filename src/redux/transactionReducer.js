@@ -1,13 +1,15 @@
 const initialState = {
-  transactions: {
-    date: "",
-    description: "",
-    category: "",
-    amount: 0,
-    type: "",
-    transaction_id: 0,
-    month_id: 0,
-  },
+  transactions: [
+    {
+      date: "",
+      description: "",
+      category: "",
+      amount: 0,
+      type: "",
+      transaction_id: 0,
+      month_id: 0,
+    },
+  ],
 };
 
 const GET_TRANSACTIONS = "GET_TRANSACTIONS";

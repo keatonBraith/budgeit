@@ -112,6 +112,7 @@ const Budget = (props) => {
                   editCategory={editCategory}
                   deleteCategory={deleteCategory}
                   category={category}
+                  categories={categories}
                   index={index}
                   key={index}
                 />

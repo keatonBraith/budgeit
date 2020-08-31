@@ -1,4 +1,40 @@
 button {
-  border-radius: 6px;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 3px solid #7fa4db;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-family: "Source Serif Pro", serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 9px 20px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin: 5px;
+  outline: none;
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: "Source Serif Pro", serif;
 }
 /*# sourceMappingURL=style.css.map */

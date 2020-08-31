@@ -63,6 +63,7 @@ const Transactions = (props) => {
       })
       .then((res) => {
         setTransactions(res.data);
+        getTransactions();
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +91,10 @@ const Transactions = (props) => {
   const deleteTransaction = (id) => {
     axios
       .delete(`/api/trans/${id}/${props.match.params.monthId}`)
-      .then((res) => setTransactions(res.data))
+      .then((res) => {
+        setTransactions(res.data);
+        getTransactions();
+      })
       .catch((err) => console.log(err));
   };
 

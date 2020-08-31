@@ -43,12 +43,13 @@ module.exports = {
 
   editCategory: async (req, res) => {
     const { name, budget } = req.body;
-    const { id } = req.params;
+    const { id, userId } = req.params;
     const db = req.app.get("db");
     const categories = await db.categories.edit_category({
       name,
       budget,
       category_id: id,
+      user_id: userId,
     });
     res.status(200).send(categories);
   },

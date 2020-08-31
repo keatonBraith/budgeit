@@ -19,7 +19,7 @@ const Transactions = (props) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
+  const getTransactions = () => {
     axios
       .get(`/api/trans/${props.match.params.monthId}`)
       .then((res) => {
@@ -29,6 +29,10 @@ const Transactions = (props) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    getTransactions();
   }, []);
 
   const handleClearInput = (event) => {
@@ -67,9 +71,16 @@ const Transactions = (props) => {
 
   const editTransaction = (id, date, description, category, amount, type) => {
     axios
-      .put(`/api/trans/${id}`, { date, description, category, amount, type })
+      .put(`/api/trans/${id}/${props.match.params.monthId}`, {
+        date,
+        description,
+        category,
+        amount,
+        type,
+      })
       .then((res) => {
         setTransactions(res.data);
+        getTransactions();
       })
       .catch((err) => {
         console.log(err);

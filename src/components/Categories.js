@@ -6,31 +6,17 @@ const Categories = (props) => {
   const [isEditing, setEdit] = useState(false);
   const [totals, setTotals] = useState([]);
   const [thisTotal, setThisTotal] = useState(0);
+  let [classes] = useState("table-col ");
   const [input, setInput] = useState({
     name: props.category.name,
     budget: props.category.budget,
   });
 
   useEffect(() => {
-    // console.log(props.transactionReducer.transactions);
-    // console.log(props.categories.length);
-    // for (let i = 0; i < props.categories.length; i++) {
-    //   const total = props.transactionReducer.transactions.reduce((a, e) => {
-    //     console.log(e.category === props.categories[i].name, e.amount);
-    //     return e.category === props.categories[i].name ? a + e.amount : a;
-    //   }, 0);
-    //   let tempTotals = totals;
-    //   tempTotals[i].name = total;
-    //   setTotals([tempTotals]);
-    //   console.log(total);
-    // }
-    // console.log(totals);
-
+    console.log(props.categories)
     let tempTotals = props.categories.map((category) => {
-      console.log("category", category);
       let categorySum = props.transactionReducer.transactions.reduce(
         (sum, transaction) => {
-          console.log("transaction/sum", transaction, sum);
           return transaction.category === category.name
             ? sum + transaction.amount
             : sum;
@@ -39,14 +25,12 @@ const Categories = (props) => {
       );
       return { name: category.name, sum: categorySum };
     });
-    console.log("tempTotals", tempTotals);
     setTotals(tempTotals);
     let stuff = tempTotals.filter((e) => {
-      console.log(e.name, props.category.name, e.name === props.category.name);
       return e.name === props.category.name;
     });
     setThisTotal(stuff[0].sum);
-  }, [props.transactionReducer.transactions]);
+  }, [props.transactionReducer.transactions, props.categories]);
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -60,6 +44,8 @@ const Categories = (props) => {
       budget: props.category.budget,
     });
   };
+
+  classes += props.category.budget - thisTotal < 0 ? "negative" : "positive";
 
   return (
     <div className="table">
@@ -97,8 +83,8 @@ const Categories = (props) => {
           <>
             <div className="table-col">{props.category.name}</div>
             <div className="table-col">${props.category.budget}</div>
-            <div className="table-col">{thisTotal}</div>
-            <div className="table-col">{props.category.budget - thisTotal}</div>
+            <div className="table-col">${thisTotal}</div>
+            <div className={classes}>${props.category.budget - thisTotal}</div>
             <div>
               <button onClick={toggleEdit}>Edit</button>
               <button

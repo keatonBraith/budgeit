@@ -56,7 +56,7 @@ const Budget = (props) => {
 
   const editCategory = (id, name, budget) => {
     axios
-      .put(`/api/category/${id}`, { name, budget })
+      .put(`/api/category/${id}/${props.userReducer.user.user_id}`, { name, budget })
       .then((res) => {
         setCategories(res.data);
       })
@@ -73,7 +73,7 @@ const Budget = (props) => {
   };
 
   return (
-    <section>a
+    <section>
       <h1>Get Budgeting!</h1>
       <div>
         <div>

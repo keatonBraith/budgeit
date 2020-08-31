@@ -87,7 +87,7 @@ const Transaction = (props) => {
             <div className="table-col">{props.transaction.date}</div>
             <div className="table-col">{props.transaction.description}</div>
             <div className="table-col">{props.transaction.category}</div>
-            <div className="table-col">{props.transaction.amount}</div>
+            <div className="table-col">${props.transaction.amount}</div>
             <div className="table-col">{props.transaction.type}</div>
             <div>
               <button onClick={toggleEdit}>Edit</button>

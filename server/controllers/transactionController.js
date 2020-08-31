@@ -23,7 +23,7 @@ module.exports = {
 
   editTransaction: async (req, res) => {
     const { date, description, category, amount, type } = req.body;
-    const { id } = req.params;
+    const { id, monthId } = req.params;
     const db = req.app.get("db");
     const transactions = await db.transactions.edit_transaction({
       date,
@@ -32,6 +32,7 @@ module.exports = {
       amount,
       type,
       transaction_id: id,
+      month_id: monthId,
     });
     res.status(200).send(transactions);
   },

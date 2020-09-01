@@ -73,10 +73,10 @@ const Budget = (props) => {
   };
 
   return (
-    <section>
-      <h1>Get Budgeting!</h1>
+    <section className="categories-main">
+    {console.log(props)}
       <div>
-        <div>
+        <div className="add-cat">
           <button>
             <Link to={`/trans/${props.match.params.monthId}`}>
               Add Transaction

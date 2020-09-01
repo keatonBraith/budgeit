@@ -6,6 +6,12 @@
   flex-direction: row;
   justify-content: space-evenly;
   font-family: $main-font;
+  border-bottom: 1px solid grey;
+  box-shadow: 0px 5px 5px grey;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 9999;
 
   nav {
       width: 100%;
@@ -17,4 +23,36 @@
     font-family: $main-font;
     margin: 0 50px;
   }
+
+  ul{
+      display: flex;
+      flex-direction: row;
+      width: 100px;
+      margin-right: 40px;
+  }
+
+  .fa-home {
+      text-decoration: none;
+      font-size: 40px;
+      padding: 9px 20px;
+      margin: 5px;
+
+      &:hover {
+          color: lighten($color: #000000, $amount: 30);
+      }
+  }
+
+  .fa-sign-out {
+      text-decoration: none;
+      font-size: 40px;
+      background-color: white;
+      border: none;
+      color: black;
+
+      &:hover {
+        color: lighten($color: #000000, $amount: 30);
+    }
+
+  }
+
 }

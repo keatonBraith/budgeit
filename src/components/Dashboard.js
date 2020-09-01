@@ -13,16 +13,27 @@ const Dashboard = (props) => {
     setMonth(value);
   };
 
+  const handleClearInput = (event) => {
+    setMonth({
+      monthInput: "",
+    });
+  };
+
+  const onClick = () => {
+    addMonth();
+    handleClearInput();
+  };
+
   useEffect(() => {
     axios
-          .get(`/api/months/${props.match.params.userId}`)
-          .then((res) => {
-            setMonths(res.data);
-            props.getMonths(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          })
+      .get(`/api/months/${props.match.params.userId}`)
+      .then((res) => {
+        setMonths(res.data);
+        props.getMonths(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const addMonth = () => {
@@ -37,11 +48,12 @@ const Dashboard = (props) => {
   };
 
   const deleteMonth = (id) => {
-    console.log("this is delete", id)
+    console.log("this is delete", id);
     axios
       .delete(`/api/month/${id}/${props.userReducer.user.user_id}`)
       .then((res) => {
         setMonths(res.data);
+        props.getMonths();
       })
       .catch((err) => console.log(err));
   };
@@ -49,26 +61,36 @@ const Dashboard = (props) => {
   // console.log(props.user.user_id, props.match.params.userId);
 
   return (
-    <section>
+    <section className="main-dash">
       <h1>Welcome! Select a Budget Month to Work On</h1>
-      <div>
-        <div>
+      <div className="budge-container">
+        <div className="add-budge">
           <input
             name="budget"
-            placeholder="Add a budget"
+            placeholder="Type budget name here"
             value={monthInput}
             onChange={handleMonthInput}
           />
-          <button onClick={addMonth}>Add Budget</button>
+          <button onClick={onClick}>Add Budget</button>
         </div>
-        {months.map((month, index) => {
-          return (
-            <div key={index}>
-              <h3><Link to={`/budget/${month.month_id}`}>{month.name}</Link></h3>
-              <button onClick={() => deleteMonth(month.month_id)}>X</button>
-            </div>
-          );
-        })}
+        <div className="budgets">
+          {months.map((month, index) => {
+            return (
+              <div className="individual-budge" key={index}>
+                <h3 className="fa fa-line-chart">
+                  <Link className="budge-name" to={`/budget/${month.month_id}`}>
+                    <br />
+                    {month.name}
+                  </Link>
+                </h3>
+                <button
+                  className="fa fa-times"
+                  onClick={() => deleteMonth(month.month_id)}
+                ></button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

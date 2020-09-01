@@ -1,0 +1,84 @@
+.categories-main {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 150px;
+
+    h1 {
+        position: absolute;
+        top: -20px;
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font: $main-font;
+    }
+      
+      .table {
+        display: table;
+        width: auto;
+        margin: 30px 0 0 0;
+      }
+      .table-row {
+        display: table-row;
+        width: auto;
+        height: 50px;
+        clear: both;
+        font-family: $main-font;
+        font-size: 20px;
+      }
+      .table-col {
+        float: left;
+        display: table-column;
+        width: 200px;
+        border-bottom: 1px solid rgb(168, 206, 255);
+      }
+      
+      .positive {
+        color: black;
+      }
+      
+      .negative {
+        color: red;
+      }
+
+      .category-btns {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 50px;
+          width: 100px;
+
+
+          button {
+              background-color: white;
+              border: none;
+              position: absolute;
+              color: black;
+              padding: 0;
+            //   margin: 10px;
+            margin-bottom: 40px;
+          }
+
+          .fa-times {
+              margin-left: 50px;
+
+              &:hover {
+                  color: lighten($color: #000000, $amount: 40);
+                  background: white;
+                  background-color: white;
+              }
+          }
+          .fa-pencil-square-o {
+
+              &:hover {
+                  color: lighten($color: #000000, $amount: 40);
+                  background: white;
+                  background-color: white;
+              }
+          }
+      }
+}

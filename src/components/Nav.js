@@ -26,10 +26,10 @@ const Nav = (props) => {
         <img src="logo1.png"/>
         <ul>
           <li>
-            <Link to={`/dash/${props.userReducer.user.user_id}`}>Home</Link>
+            <Link className="fa fa-home" to={`/dash/${props.userReducer.user.user_id}`}></Link>
           </li>
-          <button onClick={logout}>
-            <Link to="/">Logout</Link>
+          <button className="fa fa-sign-out" onClick={logout}>
+            <Link to="/"></Link>
           </button>
         </ul>
       </nav>

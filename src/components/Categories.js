@@ -85,12 +85,12 @@ const Categories = (props) => {
             <div className="table-col">${props.category.budget}</div>
             <div className="table-col">${thisTotal}</div>
             <div className={classes}>${props.category.budget - thisTotal}</div>
-            <div>
-              <button onClick={toggleEdit}>Edit</button>
+            <div className="category-btns">
+              <button className="fa fa-pencil-square-o" onClick={toggleEdit}></button>
               <button
+              className="fa fa-times"
                 onClick={() => props.deleteCategory(props.category.category_id)}
               >
-                Delete
               </button>
             </div>
           </>

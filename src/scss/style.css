@@ -21,11 +21,6 @@ button:hover {
   color: black;
 }
 
-button:active {
-  position: relative;
-  top: 1px;
-}
-
 .auth-main {
   display: flex;
   justify-content: center;
@@ -69,6 +64,161 @@ button:active {
   margin: 100px 0 0 0;
 }
 
+.categories-main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 150px;
+}
+
+.categories-main h1 {
+  position: absolute;
+  top: -20px;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font: "Zilla Slab", serif;
+}
+
+.categories-main .table {
+  display: table;
+  width: auto;
+  margin: 30px 0 0 0;
+}
+
+.categories-main .table-row {
+  display: table-row;
+  width: auto;
+  height: 50px;
+  clear: both;
+  font-family: "Zilla Slab", serif;
+  font-size: 20px;
+}
+
+.categories-main .table-col {
+  float: left;
+  display: table-column;
+  width: 200px;
+  border-bottom: 1px solid #a8ceff;
+}
+
+.categories-main .positive {
+  color: black;
+}
+
+.categories-main .negative {
+  color: red;
+}
+
+.categories-main .category-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+}
+
+.categories-main .category-btns button {
+  background-color: white;
+  border: none;
+  position: absolute;
+  color: black;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.categories-main .category-btns .fa-times {
+  margin-left: 50px;
+}
+
+.categories-main .category-btns .fa-times:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
+}
+
+.categories-main .category-btns .fa-pencil-square-o:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
+}
+
+.main-dash {
+  height: 88vh;
+  margin: 0 auto;
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-dash h1 {
+  position: absolute;
+  top: 150px;
+  font-family: "Zilla Slab", serif;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.main-dash .budge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-dash .budge-container .add-budge {
+  position: absolute;
+  top: 200px;
+}
+
+.main-dash .budge-container .budgets {
+  margin-top: 350px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.main-dash .budge-container .budgets .individual-budge {
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-family: "Zilla Slab", serif;
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
+  margin: 20px;
+}
+
+.main-dash .budge-container .budgets .individual-budge .fa-line-chart {
+  font-size: 50px;
+}
+
+.main-dash .budge-container .budgets .individual-budge .budge-name {
+  font-family: "Zilla Slab", serif;
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.main-dash .budge-container .budgets .individual-budge .fa-times {
+  background-color: white;
+  color: black;
+  border: none;
+}
+
 input {
   border: none;
   border-bottom: 2px solid #1DA1F2;
@@ -80,11 +230,17 @@ input {
 .nav-main {
   height: 12vh;
   width: 100vw;
-  background-color: #f4f4f4;
+  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   font-family: "Zilla Slab", serif;
+  border-bottom: 1px solid grey;
+  box-shadow: 0px 5px 5px grey;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 9999;
 }
 
 .nav-main nav {
@@ -98,6 +254,36 @@ input {
   margin: 0 50px;
 }
 
+.nav-main ul {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  margin-right: 40px;
+}
+
+.nav-main .fa-home {
+  text-decoration: none;
+  font-size: 40px;
+  padding: 9px 20px;
+  margin: 5px;
+}
+
+.nav-main .fa-home:hover {
+  color: #4d4d4d;
+}
+
+.nav-main .fa-sign-out {
+  text-decoration: none;
+  font-size: 40px;
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+.nav-main .fa-sign-out:hover {
+  color: #4d4d4d;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -105,7 +291,7 @@ input {
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: white;
   font-family: "Zilla Slab", serif;
 }
 /*# sourceMappingURL=style.css.map */

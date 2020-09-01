@@ -1,0 +1,22 @@
+@import './buttons';
+@import './variables';
+@import './auth';
+@import './budget';
+@import './dashboard';
+@import './inputs';
+@import './nav';
+@import './transactions';
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $light-color;
+  font-family: $main-font;
+}
+
+

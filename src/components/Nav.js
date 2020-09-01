@@ -21,9 +21,9 @@ const Nav = (props) => {
   };
 
   return (
-    <div>
+    <div className="nav-main">
       <nav>
-        <div>Logo</div>
+        <img src="logo1.png"/>
         <ul>
           <li>
             <Link to={`/dash/${props.userReducer.user.user_id}`}>Home</Link>

@@ -48,9 +48,10 @@ const Auth = (props) => {
   };
 
   return (
-    <div>
-      <h1>{toggle ? "Login" : "Register"}</h1>
-      <div>
+    <div className="auth-main">
+      <img src="logo2.png" />
+      <h1>{toggle ? "Login to BudgeIt" : "Register an Account"}</h1>
+      <div className="auth-container">
         <input
           name="email"
           placeholder="email"
@@ -66,7 +67,7 @@ const Auth = (props) => {
           onChange={handlePasswordInput}
         />
         {toggle ? (
-          <>
+          <div className="login-btn">
             <button onClick={login}>Login</button>
             <button
               onClick={() => {
@@ -75,9 +76,9 @@ const Auth = (props) => {
             >
               Register
             </button>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="login-btn">
             <button onClick={register}>Register</button>
             <button
               onClick={() => {
@@ -86,7 +87,7 @@ const Auth = (props) => {
             >
               Back to Login
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>

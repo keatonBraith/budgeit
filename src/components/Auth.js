@@ -49,9 +49,9 @@ const Auth = (props) => {
 
   return (
     <div className="auth-main">
+      <div className="auth-container">
       <img src="logo2.png" />
       <h1>{toggle ? "Login to BudgeIt" : "Register an Account"}</h1>
-      <div className="auth-container">
         <input
           name="email"
           placeholder="email"

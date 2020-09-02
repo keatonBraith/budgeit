@@ -99,38 +99,51 @@ const Transactions = (props) => {
   };
 
   return (
-    <div>
+    <div className="trans-main">
       {console.log(props)}
-      <Link to={`/budget/${props.match.params.monthId}`}>Back to Budget</Link>
-      <div>
-        <button onClick={onClick}>Add Transaction</button>
+      <Link
+        className="budget-link"
+        to={`/budget/${props.match.params.monthId}`}
+      >
+        Back to Budget
+      </Link>
+      <div className="add-trans">
+        <button onClick={onClick}>
+          <i className="fa fa-floppy-o"></i>
+          <span className="save-trans">Save Transaction</span>
+        </button>
         <input
+          className="date"
           name="date"
-          placeholder="Transaction Date"
+          placeholder="Date"
           value={input.date}
           onChange={handleChange}
         />
         <input
+          className="description"
           name="description"
-          placeholder="Transaction Description"
+          placeholder="Description"
           value={input.description}
           onChange={handleChange}
         />
         <input
+          className="category"
           name="category"
-          placeholder="Transaction Category"
+          placeholder="Category"
           value={input.category}
           onChange={handleChange}
         />
         <input
+          className="amount"
           name="amount"
-          placeholder="Transaction Amount"
+          placeholder="Amount"
           value={input.amount}
           onChange={handleChange}
         />
         <input
+          className="type"
           name="type"
-          placeholder="Transaction Type"
+          placeholder="Type"
           value={input.type}
           onChange={handleChange}
         />
@@ -143,7 +156,7 @@ const Transactions = (props) => {
             <div className="table-col">Type</div>
           </div>
         </div>
-        <div>
+        <div className="transactions">
           {transactions.map((transaction, index) => {
             return (
               <Transaction

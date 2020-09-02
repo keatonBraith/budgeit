@@ -63,7 +63,8 @@ const Transaction = (props) => {
                   value={input.type}
                   onChange={handleChange}
                 />
-                <button
+                <a
+                className="fa fa-floppy-o"
                   onClick={() => {
                     props.editTransaction(
                       props.transaction.transaction_id,
@@ -76,9 +77,9 @@ const Transaction = (props) => {
                     toggleEdit();
                   }}
                 >
-                  Save
-                </button>
-                <button onClick={toggleEdit}>Cancel</button>
+                  
+                </a>
+                <a className="fa fa-times" onClick={toggleEdit}></a>
               </div>
             </div>
           </>
@@ -89,15 +90,16 @@ const Transaction = (props) => {
             <div className="table-col">{props.transaction.category}</div>
             <div className="table-col">${props.transaction.amount}</div>
             <div className="table-col">{props.transaction.type}</div>
-            <div>
-              <button onClick={toggleEdit}>Edit</button>
-              <button
+            <div className="category-btns">
+              <a className="fa fa-pencil-square-o" onClick={toggleEdit}></a>
+              <a
+              className="fa fa-times"
                 onClick={() =>
                   props.deleteTransaction(props.transaction.transaction_id)
                 }
               >
-                Delete
-              </button>
+              
+              </a>
             </div>
           </>
         )}

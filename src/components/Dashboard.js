@@ -77,12 +77,12 @@ const Dashboard = (props) => {
           {months.map((month, index) => {
             return (
               <div className="individual-budge" key={index}>
-                <h3 className="fa fa-line-chart">
+                <h3 className="fa fa-line-chart"></h3>
                   <Link className="budge-name" to={`/budget/${month.month_id}`}>
                     <br />
                     {month.name}
                   </Link>
-                </h3>
+                
                 <button
                   className="fa fa-times"
                   onClick={() => deleteMonth(month.month_id)}

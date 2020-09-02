@@ -13,7 +13,6 @@ const Categories = (props) => {
   });
 
   useEffect(() => {
-    console.log(props.categories)
     let tempTotals = props.categories.map((category) => {
       let categorySum = props.transactionReducer.transactions.reduce(
         (sum, transaction) => {
@@ -37,7 +36,6 @@ const Categories = (props) => {
   };
 
   const toggleEdit = () => {
-    console.log(props.category.budget);
     setEdit(!isEditing);
     setInput({
       name: props.category.name,
@@ -53,31 +51,40 @@ const Categories = (props) => {
         {isEditing ? (
           <>
             <div className="table-col">
-              <input name="name" value={input.name} onChange={handleChange} />
+              <input
+                className="top-input"
+                name="name"
+                value={input.name}
+                onChange={handleChange}
+              />
             </div>
             <div className="table-col">
               <input
+                className="bottom-input"
                 name="budget"
                 type="number"
                 value={input.budget}
                 onChange={handleChange}
               />
             </div>
-            <div className="table-col">$0</div>
-            <div className="table-col">$0</div>
-            <button
-              onClick={() => {
-                props.editCategory(
-                  props.category.category_id,
-                  input.name,
-                  input.budget
-                );
-                toggleEdit();
-              }}
-            >
-              Save
-            </button>
-            <button onClick={toggleEdit}>Cancel</button>
+            <div className="table-col">${thisTotal}</div>
+            <div className="table-col">
+              ${props.category.budget - thisTotal}
+            </div>
+            <div className="category-btns">
+              <a
+                className="fa fa-floppy-o"
+                onClick={() => {
+                  props.editCategory(
+                    props.category.category_id,
+                    input.name,
+                    input.budget
+                  );
+                  toggleEdit();
+                }}
+              ></a>
+              <a className="fa fa-times" onClick={toggleEdit}></a>
+            </div>
           </>
         ) : (
           <>
@@ -86,12 +93,11 @@ const Categories = (props) => {
             <div className="table-col">${thisTotal}</div>
             <div className={classes}>${props.category.budget - thisTotal}</div>
             <div className="category-btns">
-              <button className="fa fa-pencil-square-o" onClick={toggleEdit}></button>
-              <button
-              className="fa fa-times"
+              <a className="fa fa-pencil-square-o" onClick={toggleEdit}></a>
+              <a
+                className="fa fa-times"
                 onClick={() => props.deleteCategory(props.category.category_id)}
-              >
-              </button>
+              ></a>
             </div>
           </>
         )}

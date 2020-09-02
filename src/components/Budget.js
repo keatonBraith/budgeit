@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Pie } from 'react-chartjs-2';
 import Categories from "./Categories";
 
 const Budget = (props) => {
@@ -15,15 +16,20 @@ const Budget = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .get(`/api/categories/${props.userReducer.user.user_id}`)
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    async function fetchData() {
+      const response = await axios.get(
+        `/api/categories/${props.userReducer.user.user_id}`
+      );
+      setCategories(response.data);
+    }
+    fetchData();
   }, []);
+
+  const categoriesMap = () => {
+    categories.map((category) => {
+      console.log(category)
+    })
+  }
 
   const handleBudgetInput = (event) => {
     const { value } = event.target;
@@ -56,7 +62,10 @@ const Budget = (props) => {
 
   const editCategory = (id, name, budget) => {
     axios
-      .put(`/api/category/${id}/${props.userReducer.user.user_id}`, { name, budget })
+      .put(`/api/category/${id}/${props.userReducer.user.user_id}`, {
+        name,
+        budget,
+      })
       .then((res) => {
         setCategories(res.data);
       })
@@ -74,14 +83,17 @@ const Budget = (props) => {
 
   return (
     <section className="categories-main">
-    {console.log(props)}
       <div>
+        <div className="top-section">
+        <button className="add-trans-btn">
+          <Link
+            className="link-trans"
+            to={`/trans/${props.match.params.monthId}`}
+          >
+            Add Transactions
+          </Link>
+        </button>
         <div className="add-cat">
-          <button>
-            <Link to={`/trans/${props.match.params.monthId}`}>
-              Add Transaction
-            </Link>
-          </button>
           <button onClick={onClick}>Add Category</button>
           <input
             name="category"
@@ -95,6 +107,7 @@ const Budget = (props) => {
             value={budgetInput}
             onChange={handleBudgetInput}
           />
+          </div>
         </div>
         <div className="table">
           <div className="table-row">

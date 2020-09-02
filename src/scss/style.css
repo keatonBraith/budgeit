@@ -32,16 +32,20 @@ button:hover {
   font-family: "Zilla Slab", serif;
   font-weight: 700;
   font-size: 20px;
-  margin: 80px 0 50px 0;
+  margin: 20px 0 20px 0;
 }
 
 .auth-main .auth-container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  align-content: flex-start;
   flex-direction: column;
-  height: 300px;
+  height: 600px;
   width: 500px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
 }
 
 .auth-main .login-btn {
@@ -61,7 +65,7 @@ button:hover {
 
 .auth-main img {
   height: 80px;
-  margin: 100px 0 0 0;
+  margin: 10px 0 0 0;
 }
 
 .categories-main {
@@ -71,7 +75,74 @@ button:hover {
   align-items: center;
   margin-left: 7%;
   margin-right: 7%;
-  margin-top: 150px;
+  margin-top: 120px;
+}
+
+.categories-main .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
+.categories-main .link-trans {
+  text-decoration: none;
+}
+
+.categories-main .add-trans-btn {
+  position: relative;
+  background-color: #1DA1F2;
+  border-radius: 20px;
+  border: 3px solid #1DA1F2;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: "Zilla Slab", serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 9px 20px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.categories-main .add-trans-btn:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+  color: black;
+}
+
+@media (max-width: 760px) {
+  .categories-main .add-trans-btn {
+    font-size: 12px;
+  }
+}
+
+.categories-main .add-cat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 760px) {
+  .categories-main .add-cat button {
+    font-size: 12px;
+  }
+}
+
+.categories-main .add-cat input {
+  margin-right: 5px;
+  width: 150px;
+}
+
+@media (max-width: 760px) {
+  .categories-main .add-cat input {
+    font-size: 16px;
+  }
 }
 
 .categories-main h1 {
@@ -102,8 +173,22 @@ button:hover {
 .categories-main .table-col {
   float: left;
   display: table-column;
-  width: 200px;
+  width: 175px;
   border-bottom: 1px solid #a8ceff;
+}
+
+@media (max-width: 900px) {
+  .categories-main .table-col {
+    width: 150px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .categories-main .table-col {
+    font-size: 16px;
+    width: 125px;
+  }
 }
 
 .categories-main .positive {
@@ -114,31 +199,55 @@ button:hover {
   color: red;
 }
 
+.categories-main input {
+  border-bottom: 1px solid #a8ceff;
+}
+
+.categories-main .top-input {
+  border-bottom: none;
+}
+
+.categories-main .bottom-input {
+  border-bottom: none;
+}
+
 .categories-main .category-btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   height: 50px;
-  width: 100px;
+  width: 50px;
+  position: relative;
+  padding-bottom: 50px;
 }
 
-.categories-main .category-btns button {
-  background-color: white;
-  border: none;
-  position: absolute;
-  color: black;
-  padding: 0;
-  margin-bottom: 40px;
+@media (max-width: 900px) {
+  .categories-main .category-btns {
+    font-size: 18px;
+  }
 }
 
-.categories-main .category-btns .fa-times {
-  margin-left: 50px;
+@media (max-width: 760px) {
+  .categories-main .category-btns {
+    font-size: 16px;
+  }
 }
 
 .categories-main .category-btns .fa-times:hover {
   color: #666666;
   background: white;
   background-color: white;
+}
+
+.categories-main .category-btns .fa-floppy-o:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
+}
+
+.categories-main .category-btns .fa-pencil-square-o {
+  margin-left: 5px;
 }
 
 .categories-main .category-btns .fa-pencil-square-o:hover {
@@ -148,45 +257,57 @@ button:hover {
 }
 
 .main-dash {
-  height: 88vh;
-  margin: 0 auto;
-  width: 80vw;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 120px;
 }
 
 .main-dash h1 {
-  position: absolute;
-  top: 150px;
+  position: relative;
   font-family: "Zilla Slab", serif;
   font-size: 30px;
   color: black;
   font-weight: bold;
   letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 730px) {
+  .main-dash h1 {
+    font-size: 25px;
+  }
 }
 
 .main-dash .budge-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .main-dash .budge-container .add-budge {
-  position: absolute;
-  top: 200px;
+  position: relative;
 }
 
 .main-dash .budge-container .budgets {
-  margin-top: 350px;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: baseline;
+  position: relative;
+  margin-right: 7%;
+  margin-left: 7%;
 }
 
 .main-dash .budge-container .budgets .individual-budge {
+  position: relative;
   height: 200px;
   width: 200px;
   margin-top: 20px;
@@ -202,8 +323,24 @@ button:hover {
   margin: 20px;
 }
 
+@media (max-width: 730px) {
+  .main-dash .budge-container .budgets .individual-budge {
+    height: 175px;
+    width: 175px;
+  }
+}
+
 .main-dash .budge-container .budgets .individual-budge .fa-line-chart {
   font-size: 50px;
+  position: absolute;
+  top: 30px;
+  right: 10;
+}
+
+@media (max-width: 730px) {
+  .main-dash .budge-container .budgets .individual-budge .fa-line-chart {
+    font-size: 40px;
+  }
 }
 
 .main-dash .budge-container .budgets .individual-budge .budge-name {
@@ -213,10 +350,21 @@ button:hover {
   font-weight: 700;
 }
 
+@media (max-width: 730px) {
+  .main-dash .budge-container .budgets .individual-budge .budge-name {
+    font-size: 20px;
+  }
+}
+
 .main-dash .budge-container .budgets .individual-budge .fa-times {
   background-color: white;
   color: black;
   border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: 20px 10px 0 0;
 }
 
 input {
@@ -230,7 +378,7 @@ input {
 .nav-main {
   height: 12vh;
   width: 100vw;
-  background-color: white;
+  background-color: #424242;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -266,22 +414,259 @@ input {
   font-size: 40px;
   padding: 9px 20px;
   margin: 5px;
+  color: white;
 }
 
 .nav-main .fa-home:hover {
-  color: #4d4d4d;
+  color: #cccccc;
 }
 
 .nav-main .fa-sign-out {
   text-decoration: none;
   font-size: 40px;
-  background-color: white;
   border: none;
-  color: black;
+  color: white;
+  padding: 9px 20px;
+  background-color: transparent;
 }
 
 .nav-main .fa-sign-out:hover {
-  color: #4d4d4d;
+  color: #cccccc;
+  background-color: transparent;
+  background: none;
+}
+
+.trans-main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 120px;
+}
+
+.trans-main .budget-link {
+  position: relative;
+  top: 0;
+  right: 0;
+  background-color: #1DA1F2;
+  border-radius: 20px;
+  border: 3px solid #1DA1F2;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: "Zilla Slab", serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 9px 20px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.trans-main .budget-link:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+  color: black;
+}
+
+@media (max-width: 1000px) {
+  .trans-main .budget-link {
+    font-size: 12px;
+  }
+}
+
+.trans-main button {
+  margin-left: -20px;
+}
+
+.trans-main button .fa-floppy-o {
+  display: none;
+}
+
+@media (max-width: 1120px) {
+  .trans-main button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .trans-main button {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .trans-main button .fa-floppy-o {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .trans-main .save-trans {
+    display: none;
+  }
+}
+
+.trans-main input {
+  border-bottom: 1px solid #a8ceff;
+}
+
+@media (max-width: 1120px) {
+  .trans-main input {
+    font-size: 16px;
+  }
+}
+
+.trans-main .date {
+  width: 100px;
+  margin-right: 5px;
+}
+
+@media (max-width: 1000px) {
+  .trans-main .date {
+    font-size: 15px;
+    width: 80px;
+  }
+}
+
+.trans-main .category {
+  width: 150px;
+  margin-right: 5px;
+}
+
+@media (max-width: 1000px) {
+  .trans-main .category {
+    font-size: 15px;
+    width: 100px;
+  }
+}
+
+.trans-main .amount {
+  width: 100px;
+  margin-right: 5px;
+}
+
+@media (max-width: 1000px) {
+  .trans-main .amount {
+    font-size: 15px;
+    width: 80px;
+  }
+}
+
+.trans-main .type {
+  width: 150px;
+  margin-right: 5px;
+}
+
+@media (max-width: 1120px) {
+  .trans-main .type {
+    width: 100px;
+  }
+}
+
+.trans-main .description {
+  margin-right: 5px;
+}
+
+@media (max-width: 1000px) {
+  .trans-main .description {
+    font-size: 15px;
+    width: 120px;
+  }
+}
+
+.trans-main .table {
+  display: table;
+  width: auto;
+  margin: 30px 0 0 0;
+}
+
+.trans-main .table-row {
+  display: table-row;
+  width: auto;
+  height: 50px;
+  clear: both;
+  font-family: "Zilla Slab", serif;
+  font-size: 20px;
+}
+
+@media (max-width: 1120px) {
+  .trans-main .table-row {
+    font-size: 16px;
+    height: 40px;
+  }
+}
+
+.trans-main .table-col {
+  float: left;
+  display: table-column;
+  width: 175px;
+  border-bottom: 1px solid #a8ceff;
+}
+
+@media (max-width: 1120px) {
+  .trans-main .table-col {
+    font-size: 16px;
+    width: 160px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .trans-main .table-col {
+    font-size: 15px;
+    width: 140px;
+  }
+}
+
+@media (max-width: 875px) {
+  .trans-main .table-col {
+    font-size: 15px;
+    width: 120px;
+  }
+}
+
+@media (max-width: 765px) {
+  .trans-main .table-col {
+    font-size: 13px;
+    width: 100px;
+  }
+}
+
+.trans-main .category-btns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.trans-main .category-btns .fa-times:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
+}
+
+.trans-main .category-btns .fa-floppy-o:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
+}
+
+.trans-main .category-btns .fa-pencil-square-o {
+  margin-left: 5px;
+}
+
+.trans-main .category-btns .fa-pencil-square-o:hover {
+  color: #666666;
+  background: white;
+  background-color: white;
 }
 
 * {

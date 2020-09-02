@@ -1,7 +1,7 @@
 .nav-main {
   height: 12vh;
   width: 100vw;
-  background-color: $light-color;
+  background-color: #424242;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -36,21 +36,25 @@
       font-size: 40px;
       padding: 9px 20px;
       margin: 5px;
+      color: white;
 
       &:hover {
-          color: lighten($color: #000000, $amount: 30);
+          color: darken($color: white, $amount: 20);
       }
   }
 
   .fa-sign-out {
       text-decoration: none;
       font-size: 40px;
-      background-color: white;
       border: none;
-      color: black;
+      color: white;
+      padding: 9px 20px;
+      background-color: transparent;
 
       &:hover {
-        color: lighten($color: #000000, $amount: 30);
+        color: darken($color: white, $amount: 20);
+        background-color: transparent;
+        background: none;
     }
 
   }

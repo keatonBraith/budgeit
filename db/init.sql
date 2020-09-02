@@ -8,7 +8,7 @@ CREATE TABLE transactions(
     transaction_id SERIAL PRIMARY KEY,
     date TEXT,
     description TEXT,
-    category VARCHAR(100) REFERENCES categories(name),
+    category VARCHAR(100),
     amount INT,
     type VARCHAR(200),
     month_id INT REFERENCES months(month_id),

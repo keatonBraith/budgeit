@@ -1,40 +1,51 @@
 .main-dash {
-  height: 88vh;
-  margin: 0 auto;
-  width: 80vw;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 120px;
 
   h1 {
-    position: absolute;
-    top: 150px;
+    position: relative;
     font-family: $main-font;
     font-size: 30px;
     color: black;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-bottom: 10px;
+
+    @media (max-width: 730px){
+      font-size: 25px;
+    }
   }
 
   .budge-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
 
     .add-budge {
-      position: absolute;
-      top: 200px;
+      position: relative;
+      
     }
 
     .budgets {
-      margin-top: 350px;
       display: flex;
       justify-content: space-around;
       flex-direction: row;
       flex-wrap: wrap;
       align-items: baseline;
+      position: relative;
+      margin-right: 7%;
+      margin-left: 7%;
 
       .individual-budge {
+        position: relative;
         height: 200px;
         width: 200px;
         margin-top: 20px;
@@ -52,8 +63,20 @@
           0 41.8px 33.4px rgba(0, 0, 0, 0.086);
         margin: 20px;
 
+        @media (max-width: 730px){
+          height: 175px;
+          width: 175px;
+        }
+
         .fa-line-chart {
           font-size: 50px;
+          position: absolute;
+          top: 30px;
+          right: 10;
+
+          @media (max-width: 730px){
+          font-size: 40px;
+          }
         }
 
         .budge-name {
@@ -61,12 +84,21 @@
           font-size: 25px;
           text-decoration: none;
           font-weight: 700;
+
+          @media (max-width: 730px){
+            font-size: 20px;
+            }
         }
 
         .fa-times {
           background-color: white;
           color: black;
           border: none;
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 0;
+          margin: 20px 10px 0 0;
         }
       }
     }

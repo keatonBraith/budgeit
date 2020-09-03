@@ -47,6 +47,7 @@ class Chart extends Component {
       <div className="pie-chart">
         <Pie
           data={this.state}
+          style="height: 200px; width: 200px;"
           options={{
             title: {
               display: true,
@@ -56,14 +57,14 @@ class Chart extends Component {
             },
             legend: {
               display: true,
-              position: "right",
+              position: "top",
               fontFamily: 'Zilla Slab',
               labels: {
-                boxWidth: 8,
+                boxWidth: 10,
               },
             },
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
           }}
         />
       </div>

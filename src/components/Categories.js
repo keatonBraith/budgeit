@@ -26,15 +26,15 @@ const Categories = (props) => {
       return { name: category.name, sum: categorySum };
     });
     setTotals(tempTotals);
-    let stuff = tempTotals.filter((e) => {
+    let totals = tempTotals.filter((e) => {
       return e.name === props.category.name;
     });
-    setThisTotal(stuff[0].sum);
-    console.log("updating chart info")
-    props.getChartInfo({
-      title: props.category.name,
-      value: stuff[0].sum,
-    });
+    setThisTotal(totals[0].sum);
+    // props.getChartInfo({
+    //   title: props.category.name,
+    //   value: totals[0].sum,
+    // });
+    props.getChartInfo(tempTotals)
   }, [props.transactionReducer.transactions, props.categories]);
 
   const handleChange = (e) => {

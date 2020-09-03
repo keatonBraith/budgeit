@@ -12,18 +12,18 @@ class Chart extends Component {
         {
           label: "Count",
           backgroundColor: [
-            "#B21F00",
-            "#C9DE00",
-            "#2FDE00",
-            "#00A6B4",
-            "#6800B4",
+            "#80ffaa",
+            "#80d4ff",
+            "#cc99ff",
+            "#b3ffff",
+            "#ffff99",
           ],
           hoverBackgroundColor: [
-            "#501800",
-            "#4B5000",
-            "#175000",
-            "#003350",
-            "#35014F",
+            "#4dff88",
+            "#4dc3ff",
+            "#b366ff",
+            "#80ffff",
+            "#ffff66",
           ],
           data: [65, 59, 80, 81, 56],
         },
@@ -33,8 +33,8 @@ class Chart extends Component {
 
   componentDidMount() {
     console.log(this.props.chartInfo);
-    let tempLabels = this.props.chartInfo.map((data) => data.title);
-    let tempData = this.props.chartInfo.map((data) => data.value);
+    let tempLabels = this.props.chartInfo.map((data) => data.name);
+    let tempData = this.props.chartInfo.map((data) => data.sum);
     this.setState({
       labels: tempLabels,
       datasets: [{ ...this.state.datasets[0], data: tempData }],
@@ -51,13 +51,15 @@ class Chart extends Component {
             title: {
               display: true,
               text: "Budget Breakdown",
-              fontSize: 20,
+              fontSize: 30,
+              fontFamily: 'Zilla Slab',
             },
             legend: {
               display: true,
               position: "right",
+              fontFamily: 'Zilla Slab',
               labels: {
-                boxWidth: 10,
+                boxWidth: 8,
               },
             },
             responsive: true,

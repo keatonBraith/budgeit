@@ -141,7 +141,7 @@ const Budget = (props) => {
           </div>
         </div>
       </div>
-      {props.transactionReducer.chartInfo.length === 5 ? <Chart chartInfo={props.transactionReducer.chartInfo} /> : null}
+      {props.transactionReducer.chartInfo.length === props.transactionReducer.chartInfo.length ? <Chart chartInfo={props.transactionReducer.chartInfo} /> : null}
     </section>
   );
 };

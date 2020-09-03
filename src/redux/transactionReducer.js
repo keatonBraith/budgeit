@@ -35,7 +35,7 @@ export default function transactionReducer(state = initialState, action) {
     case GET_TRANSACTIONS:
       return { ...state, transactions: action.payload };
     case GET_CHARTINFO:
-      return { ...state, chartInfo: [...state.chartInfo, action.payload]};
+      return { ...state, chartInfo: action.payload};
     default:
       return state;
   }

@@ -256,6 +256,11 @@ button:hover {
   background-color: white;
 }
 
+.pie-chart {
+  height: 500px;
+  width: 500px;
+}
+
 .main-dash {
   position: relative;
   display: flex;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getTransactions } from "../redux/transactionReducer";
+import { getChartInfo } from "../redux/transactionReducer";
 
 const Categories = (props) => {
   const [isEditing, setEdit] = useState(false);
@@ -29,6 +30,11 @@ const Categories = (props) => {
       return e.name === props.category.name;
     });
     setThisTotal(stuff[0].sum);
+    console.log("updating chart info")
+    props.getChartInfo({
+      title: props.category.name,
+      value: stuff[0].sum,
+    });
   }, [props.transactionReducer.transactions, props.categories]);
 
   const handleChange = (e) => {
@@ -108,4 +114,4 @@ const Categories = (props) => {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, { getTransactions })(Categories);
+export default connect(mapStateToProps, { getTransactions, getChartInfo })(Categories);

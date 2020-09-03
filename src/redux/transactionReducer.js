@@ -10,9 +10,11 @@ const initialState = {
       month_id: 0,
     },
   ],
+  chartInfo: [],
 };
 
 const GET_TRANSACTIONS = "GET_TRANSACTIONS";
+const GET_CHARTINFO = "GET_CHARTINFO";
 
 export function getTransactions(transactions) {
   return {
@@ -21,10 +23,19 @@ export function getTransactions(transactions) {
   };
 }
 
+export function getChartInfo(data) {
+  return {
+    type: GET_CHARTINFO,
+    payload: data,
+  };
+}
+
 export default function transactionReducer(state = initialState, action) {
   switch (action.type) {
     case GET_TRANSACTIONS:
       return { ...state, transactions: action.payload };
+    case GET_CHARTINFO:
+      return { ...state, chartInfo: [...state.chartInfo, action.payload]};
     default:
       return state;
   }

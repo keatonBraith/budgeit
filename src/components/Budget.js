@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Pie } from 'react-chartjs-2';
+import Chart from "./Chart";
 import Categories from "./Categories";
 
 const Budget = (props) => {
   const [categories, setCategories] = useState([]);
   const [categoryInput, setCategory] = useState("");
   const [budgetInput, setBudget] = useState("");
+  const [chartInfo, setChartInfo] = useState([]);
 
   const handleCategoryInput = (event) => {
     const { value } = event.target;
@@ -22,14 +23,15 @@ const Budget = (props) => {
       );
       setCategories(response.data);
     }
+    categoriesMap();
     fetchData();
   }, []);
 
   const categoriesMap = () => {
     categories.map((category) => {
-      console.log(category)
-    })
-  }
+      console.log(category);
+    });
+  };
 
   const handleBudgetInput = (event) => {
     const { value } = event.target;
@@ -81,32 +83,36 @@ const Budget = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const updateChartInfo = (data) => {
+    setChartInfo(data);
+  };
+
   return (
     <section className="categories-main">
       <div>
         <div className="top-section">
-        <button className="add-trans-btn">
-          <Link
-            className="link-trans"
-            to={`/trans/${props.match.params.monthId}`}
-          >
-            Add Transactions
-          </Link>
-        </button>
-        <div className="add-cat">
-          <button onClick={onClick}>Add Category</button>
-          <input
-            name="category"
-            placeholder="Category Name"
-            value={categoryInput}
-            onChange={handleCategoryInput}
-          />
-          <input
-            name="budget"
-            placeholder="Budget Amount"
-            value={budgetInput}
-            onChange={handleBudgetInput}
-          />
+          <button className="add-trans-btn">
+            <Link
+              className="link-trans"
+              to={`/trans/${props.match.params.monthId}`}
+            >
+              Add Transactions
+            </Link>
+          </button>
+          <div className="add-cat">
+            <button onClick={onClick}>Add Category</button>
+            <input
+              name="category"
+              placeholder="Category Name"
+              value={categoryInput}
+              onChange={handleCategoryInput}
+            />
+            <input
+              name="budget"
+              placeholder="Budget Amount"
+              value={budgetInput}
+              onChange={handleBudgetInput}
+            />
           </div>
         </div>
         <div className="table">
@@ -127,13 +133,15 @@ const Budget = (props) => {
                   category={category}
                   categories={categories}
                   index={index}
-                  key={index}
+                  key={categories.category_id}
+                  updateChartInfo={updateChartInfo}
                 />
               );
             })}
           </div>
         </div>
       </div>
+      {props.transactionReducer.chartInfo.length === 5 ? <Chart chartInfo={props.transactionReducer.chartInfo} /> : null}
     </section>
   );
 };

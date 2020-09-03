@@ -100,7 +100,6 @@ const Transactions = (props) => {
 
   return (
     <div className="trans-main">
-      {console.log(props)}
       <Link
         className="budget-link"
         to={`/budget/${props.match.params.monthId}`}

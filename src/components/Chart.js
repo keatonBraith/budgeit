@@ -17,6 +17,7 @@ class Chart extends Component {
             "#cc99ff",
             "#b3ffff",
             "#ffff99",
+            "#7B68EE",
           ],
           hoverBackgroundColor: [
             "#4dff88",
@@ -24,6 +25,7 @@ class Chart extends Component {
             "#b366ff",
             "#80ffff",
             "#ffff66",
+            "#6A5ACD",
           ],
           data: [65, 59, 80, 81, 56],
         },
@@ -53,12 +55,12 @@ class Chart extends Component {
               display: true,
               text: "Budget Breakdown",
               fontSize: 30,
-              fontFamily: 'Zilla Slab',
+              fontFamily: "Zilla Slab",
             },
             legend: {
               display: true,
               position: "top",
-              fontFamily: 'Zilla Slab',
+              fontFamily: "Zilla Slab",
               labels: {
                 boxWidth: 10,
               },

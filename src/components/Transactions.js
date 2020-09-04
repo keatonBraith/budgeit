@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTransactions } from "../redux/transactionReducer";
+import Aws from './Aws';
 import Transaction from "./Transaction";
 
 const Transactions = (props) => {
@@ -146,6 +147,7 @@ const Transactions = (props) => {
           value={input.type}
           onChange={handleChange}
         />
+        <Aws/>
         <div className="table">
           <div className="table-row">
             <div className="table-col">Date</div>

@@ -38,6 +38,12 @@
     }
   }
 
+  .add-trans {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   button {
     margin-left: -20px;
 
@@ -75,6 +81,29 @@
     }
   }
 
+  .dropzone {
+    border: 1px solid $blue-color2;
+    // border-bottom: 1px solid $blue-color2;
+    outline: none;
+    font-family: $main-font;
+    font-size: 16px;
+    width: 100px;
+    cursor: pointer;
+    color: rgb(119, 119, 119);
+    margin-bottom: 8px;
+    text-align: center;
+
+    @media (max-width: 1120px) {
+      margin-bottom: 13px;
+    }
+
+    @media (max-width: 1000px) {
+      font-size: 12px;
+      width: 80px;
+      margin-bottom: 8px;
+    }
+  }
+
   .date {
     width: 100px;
     margin-right: 5px;
@@ -102,7 +131,7 @@
       width: 80px;
     }
   }
-  .type {
+  .receipt {
     width: 150px;
     margin-right: 5px;
 

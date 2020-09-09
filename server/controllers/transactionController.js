@@ -7,11 +7,11 @@ module.exports = {
   },
 
   addTransaction: (req, res) => {
-    const { date, description, category, amount, type } = req.body;
+    const { date, description, category, amount, img_url } = req.body;
     const { id } = req.params;
     const db = req.app.get("db");
     db.transactions
-      .add_transaction([date, description, category, amount, type, id])
+      .add_transaction([date, description, category, amount, img_url, id])
       .then((transactions) => res.status(200).send(transactions))
       .catch((err) => {
         res.status(500).send({
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   editTransaction: async (req, res) => {
-    const { date, description, category, amount, type } = req.body;
+    const { date, description, category, amount, img_url } = req.body;
     const { id, monthId } = req.params;
     const db = req.app.get("db");
     const transactions = await db.transactions.edit_transaction({
@@ -30,7 +30,7 @@ module.exports = {
       description,
       category,
       amount,
-      type,
+      img_url,
       transaction_id: id,
       month_id: monthId,
     });
@@ -50,4 +50,10 @@ module.exports = {
         console.log(err);
       });
   },
+
+  addReceipt: async (req, res) => {
+    const db = req.app.get('db');
+    const {transaction_id} = req.params;
+    await db.add
+  }
 };

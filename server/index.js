@@ -7,6 +7,9 @@ const authCtrl = require("./controllers/authController");
 const monthController = require("./controllers/monthController");
 const categoryController = require("./controllers/categoryController");
 const transactionController = require("./controllers/transactionController");
+const aws = require('aws-sdk');
+
+const { BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
 
@@ -55,5 +58,39 @@ app.get('/api/trans/:id', transactionController.getTransactions);
 app.post('/api/trans/:id', transactionController.addTransaction);
 app.put('/api/trans/:id/:monthId', transactionController.editTransaction);
 app.delete('/api/trans/:id/:monthId', transactionController.deleteTransaction);
+
+//#AWS ENDPOINT
+app.get('/api/signs3', (req, res) => {
+  aws.config = {
+    region: 'us-west-1',
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  };
+
+  const s3 = new aws.S3({signatureVersion: 'v4'});
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read',
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${BUCKET}.s3.amazonaws.com/${fileName}`,
+    };
+
+    return res.send(returnData);
+  });
+});
+app.post("/api/img", transactionController.addReceipt);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

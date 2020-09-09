@@ -1,83 +1,75 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { v4 as randomString } from 'uuid';
+import Dropzone from 'react-dropzone';
+import { GridLoader } from 'react-spinners';
+
 class Aws extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      success: false,
-      url: "",
+      isUploading: false,
+      url: 'http://via.placeholder.com/450x450',
     };
   }
 
-  handleChange = (ev) => {
-    this.setState({ success: false, url: "" });
-  };
-  // Perform the upload
-  handleUpload = (ev) => {
-    let file = this.uploadInput.files[0];
-    // Split the filename to get the name and type
-    let fileParts = this.uploadInput.files[0].name.split(".");
-    let fileName = fileParts[0];
-    let fileType = fileParts[1];
-    console.log("Preparing the upload");
-    axios
-      .post("http://localhost:3001/sign_s3", {
-        fileName: fileName,
-        fileType: fileType,
-      })
-      .then((response) => {
-        var returnData = response.data.data.returnData;
-        var signedRequest = returnData.signedRequest;
-        var url = returnData.url;
-        this.setState({ url: url });
-        console.log("Recieved a signed request " + signedRequest);
+  getSignedRequest = ([file]) => {
+    this.setState({ isUploading: true });
+    // We are creating a file name that consists of a random string, and the name of the file that was just uploaded with the spaces removed and hyphens inserted instead. This is done using the .replace function with a specific regular expression. This will ensure that each file uploaded has a unique name which will prevent files from overwriting other files due to duplicate names.
+    const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
 
-        // Put the fileType in the headers for the upload
-        var options = {
-          headers: {
-            "Content-Type": fileType,
-          },
-        };
-        axios
-          .put(signedRequest, file, options)
-          .then((result) => {
-            console.log("Response from s3");
-            this.setState({ success: true });
-          })
-          .catch((error) => {
-            alert("ERROR " + JSON.stringify(error));
-          });
+    // We will now send a request to our server to get a "signed url" from Amazon. We are essentially letting AWS know that we are going to upload a file soon. We are only sending the file-name and file-type as strings. We are not sending the file itself at this point.
+    axios
+      .get('/api/signs3', {
+        params: {
+          'file-name': fileName,
+          'file-type': file.type,
+        },
       })
-      .catch((error) => {
-        alert(JSON.stringify(error));
+      .then(response => {
+        const { signedRequest, url } = response.data;
+        this.uploadFile(file, signedRequest, url);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  uploadFile = (file, signedRequest, url) => {
+    const options = {
+      headers: {
+        'Content-Type': file.type,
+      },
+    };
+
+    axios
+      .put(signedRequest, file, options)
+      .then(response => {
+        this.setState({ isUploading: false, url });
+        // .post("/api/img", {url})
+      })
+      .catch(err => {
+        this.setState({
+          isUploading: false,
+        });
+        if (err.response.status === 403) {
+          alert(
+            `Your request for a signed URL failed with a status 403. Double check the CORS configuration and bucket policy in the README. You also will want to double check your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env and ensure that they are the same as the ones that you created in the IAM dashboard. You may need to generate new keys\n${
+              err.stack
+            }`
+          );
+        } else {
+          alert(`ERROR: ${err.status}\n ${err.stack}`);
+        }
       });
   };
 
   render() {
-    const Success_message = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-        <a href={this.state.url}>Access the file here</a>
-        <br />
-      </div>
-    );
+    const { url, isUploading } = this.state;
     return (
-      <div className="App">
-        <center>
-          <h1>UPLOAD A FILE</h1>
-          {this.state.success ? <Success_message /> : null}
-          <input
-            onChange={this.handleChange}
-            ref={(ref) => {
-              this.uploadInput = ref;
-            }}
-            type="file"
-          />
-          <br />
-          <button onClick={this.handleUpload}>UPLOAD</button>
-        </center>
-      </div>
+      
     );
   }
 }
+
 export default Aws;

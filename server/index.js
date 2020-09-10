@@ -9,6 +9,12 @@ const categoryController = require("./controllers/categoryController");
 const transactionController = require("./controllers/transactionController");
 const aws = require('aws-sdk');
 
+const path = require('path');
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 const { BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env;
@@ -91,6 +97,6 @@ app.get('/api/signs3', (req, res) => {
     return res.send(returnData);
   });
 });
-app.post("/api/img", transactionController.addReceipt);
+// app.post("/api/img", transactionController.addReceipt);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

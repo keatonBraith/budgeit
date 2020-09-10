@@ -50,10 +50,4 @@ module.exports = {
         console.log(err);
       });
   },
-
-  addReceipt: async (req, res) => {
-    const db = req.app.get('db');
-    const {transaction_id} = req.params;
-    await db.add
-  }
 };

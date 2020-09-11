@@ -278,7 +278,7 @@ button:hover {
   flex-direction: column;
   margin-left: 7%;
   margin-right: 7%;
-  margin-top: 120px;
+  margin-top: 130px;
 }
 
 .main-dash h1 {
@@ -403,6 +403,18 @@ input {
   top: 0;
   overflow: hidden;
   z-index: 9999;
+}
+
+@media (max-height: 900px) {
+  .nav-main {
+    height: 11vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-main {
+    height: 80px;
+  }
 }
 
 .nav-main nav {

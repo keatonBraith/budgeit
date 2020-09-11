@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { getTransactions } from "../redux/transactionReducer";
 import { getChartInfo } from "../redux/transactionReducer";
 
@@ -17,38 +17,33 @@ const Categories = (props) => {
 
   useEffect(() => {
     if (props.match.params.monthId) {
-      axios
-        .get(`/api/trans/${props.match.params.monthId}`)
-        .then((res) => {
-          props.getTransactions(res.data);
-          let tempTotals = props.categories.map((category) => {
-            let categorySum = props.transactionReducer.transactions.reduce(
-              (sum, transaction) => {
-                return transaction.category === category.name
-                  ? sum + transaction.amount
-                  : sum;
-              },
-              0
-            );
-            return { name: category.name, sum: categorySum };
-          });
-          setTotals(tempTotals);
-          let totals = tempTotals.filter((e) => {
-            return e.name === props.category.name;
-          });
-          setThisTotal(totals[0].sum);
-          console.log(totals, thisTotal);
-          // props.getChartInfo({
-          //   title: props.category.name,
-          //   value: totals[0].sum,
-          // });
-          props.getChartInfo(tempTotals);
+      axios.get(`/api/trans/${props.match.params.monthId}`).then((res) => {
+        props.getTransactions(res.data);
+        let tempTotals = props.categories.map((category) => {
+          let categorySum = props.transactionReducer.transactions.reduce(
+            (sum, transaction) => {
+              return transaction.category === category.name
+                ? sum + transaction.amount
+                : sum;
+            },
+            0
+          );
+          return { name: category.name, sum: categorySum };
         });
+        setTotals(tempTotals);
+        let totals = tempTotals.filter((e) => {
+          return e.name === props.category.name;
+        });
+        setThisTotal(totals[0].sum);
+        console.log(totals, thisTotal);
+        props.getChartInfo(tempTotals);
+      });
     }
   }, [
     props.transactionReducer.transactions.length,
     props.categories,
     props.monthsReducer.months.month_id,
+    props.getChartInfo,
   ]);
 
   const handleChange = (e) => {

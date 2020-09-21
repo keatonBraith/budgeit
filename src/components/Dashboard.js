@@ -14,9 +14,7 @@ const Dashboard = (props) => {
   };
 
   const handleClearInput = (event) => {
-    setMonth({
-      monthInput: "",
-    });
+    setMonth("");
   };
 
   const onClick = () => {
